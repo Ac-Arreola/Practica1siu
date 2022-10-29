@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@if (session()->has('confirmacion'))
+
+        {!!
+            "<script>
+            Swal.fire(
+            'Bien hecho!',
+            'El registro se ha realizado exitosamente!',
+            'success'
+            )
+            </script>
+        "!!}
+            
+        @endif
+<html >
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>AGREGAR</title>
+        
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)    
+        
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ $error }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endforeach
+        @endif
+
 
         <style>
             body {
@@ -27,14 +51,14 @@
                 <form>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold"> Correo electrónico </label>
-                        <input type="email" class="form-control">
+                        <input type="email" class="form-control" name="txtEmail">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold"> Contraseña </label>
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" name="txtPass">
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="submit" class="btn btn-info fw-bold">Submit</button>
+                    <button type="submit" class="btn btn-info fw-bold">Ingresar</button>
                     </div>
                 </form>
             </div>
