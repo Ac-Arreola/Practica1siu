@@ -1,34 +1,22 @@
-<!DOCTYPE html>
+ <!-- SI EN LA SESIÓN HAY UNA CONFIRMACION SE MUESTRA EL ALERT DE SWEETALERT-->
+
 @if (session()->has('confirmacion'))
 
         {!!
-            "<script>
-            Swal.fire(
+            "<script>Swal.fire(
             'Bien hecho!',
             'El registro se ha realizado exitosamente!',
             'success'
-            )
-            </script>
-        "!!}
+            )</script>"!!}
             
-        @endif
+@endif
+
 <html >
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>AGREGAR</title>
-        
-        @if ($errors->any())
-        @foreach ($errors->all() as $error)    
-        
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>{{ $error }}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        @endforeach
-        @endif
-
 
         <style>
             body {
@@ -47,15 +35,23 @@
         
             <div class="card-body">
               
-              
-                <form>
+ <!-- INICIA FORMULARIO MÉTODO POST ENV RUTA GUARDAR -->
+ 
+                <form action="Guardar" method="post">
+                    @csrf
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold"> Correo electrónico </label>
-                        <input type="email" class="form-control" name="txtEmail">
+                        <input type="email" class="form-control" name="txtEmail" value="{{old('txtEmail')}}">
+                        <p class="text-primary fst-italic fw-bold">
+                            {{$errors->first('txtEmail')}}
+                           </p> 
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold"> Contraseña </label>
-                        <input type="password" class="form-control" name="txtPass">
+                        <input type="password" class="form-control" name="txtPass" value="{{old('txtPass')}}">
+                        <p class="text-primary fst-italic fw-bold">
+                            {{$errors->first('txtPass')}}
+                           </p> 
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
                     <button type="submit" class="btn btn-info fw-bold">Ingresar</button>

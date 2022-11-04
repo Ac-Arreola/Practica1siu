@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-class ControladorLogin extends Controller
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidarLogs;
 
-class ValidarLogin extends Controller
+class ControladorLogin extends Controller
 {
-    public function procesarLogeo(ValidarLogin $req){
-
+    public function procesarLogeo(ValidarLogs $req){
+//SE REDIRECCIONA A VISTA AGREGAR CON CONFIRMACION Y MSJ DE CORRECTO
         return redirect('Agregar')->with('confirmacion','Procesado correctamente');
+        
      }
 
 }

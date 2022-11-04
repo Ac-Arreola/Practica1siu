@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ControladorLogin;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::get('/Agregar', function () {
 Route::get('/Tabla', function () {
     return view('Tabla');
 });
+Route::post('Guardar',[ControladorLogin::class,'procesarLogeo']);
